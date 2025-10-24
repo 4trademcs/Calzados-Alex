@@ -1,6 +1,6 @@
 // src/pages/Model3D.jsx
 import { useState, useMemo, useEffect, memo } from "react";
-import { BsWhatsapp, BsArrow90DegLeft, BsSearch, BsQuestion } from "react-icons/bs";
+import { BsWhatsapp, BsArrow90DegLeft, BsSearch, BsQuestion, BsList } from "react-icons/bs";
 import { Link, useSearchParams } from "react-router-dom";
 import BussinesDetail from "../components/BussinesDetail";
 import ModelLoader from "../components/ModelLoader";
@@ -14,8 +14,7 @@ export default function Model3D() {
   const material = params.get("material") || "charol";
 
   // WhatsApp
-  const whatsappNumber =
-    BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
+  const whatsappNumber = BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
 
   // Estados para búsqueda y modelo actual
   const [inputValue, setInputValue] = useState("");
@@ -52,9 +51,7 @@ export default function Model3D() {
     const next = inputValue.trim();
     if (next) setModelName(next);
   };
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSearch();
-  };
+  const handleKeyDown = (e) => { if (e.key === "Enter") handleSearch(); };
 
   // ======= Menú lateral con la foto original del modelo =======
   const { list: images } = useList("images");
@@ -81,36 +78,36 @@ export default function Model3D() {
       {/* Botón lateral de imagen */}
       <button
         onClick={() => setMenuOpen(true)}
-        className="fixed top-16 left-2 z-30 rounded-full px-3 py-2 text-sm bg-white/10 text-white border-2 border-amber-50 shadow backdrop-blur-md hover:bg-white hover:text-black transition"
+        className="fixed top-4 right-2 z-20 rounded-full p-1 text-sm bg-white/10 text-white border-2 border-amber-50 shadow backdrop-blur-md hover:bg-white hover:text-black transition"
         aria-label="Ver imagen original"
         title="Ver imagen original"
       >
-        Ver imagen
+        <BsList size={25}/>
       </button>
 
       {/* Panel lateral */}
       <div
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-20 bg-black/40 backdrop-blur-sm transition-opacity ${
+        className={`fixed inset-0 z-30 bg-black/40 backdrop-blur-sm transition-opacity ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />
       <aside
         className={`
-          fixed top-0 left-0 z-30 h-full w-80 sm:w-96 bg-white shadow-2xl
-          transform transition-transform duration-300
-          ${menuOpen ? "translate-x-0" : "-translate-x-full"}
+          fixed top-0 right-0 outline-4 outline-white z-30 h-full w-80 sm:w-96 bg-blue-500/20 backdrop-blur-lg shadow-2xl
+          transform transition-transform duration-500
+          ${menuOpen ? "translate-x" : "translate-x-[105%]"}
           flex flex-col
         `}
         aria-label="Menú de imagen del modelo"
       >
-        <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-base font-semibold text-zinc-900">
+        <div className="flex items-center justify-between p-4 border-b-2 border-b-amber-50">
+          <h3 className="text-base font-semibold text-white">
             Imagen original
           </h3>
           <button
             onClick={() => setMenuOpen(false)}
-            className="rounded-full px-3 py-1 text-sm bg-zinc-100 hover:bg-zinc-200"
+            className="rounded-full px-3 py-1 bg-zinc-900 text-white text-sm hover:bg-zinc-800 transition"
             aria-label="Cerrar"
             title="Cerrar"
           >
@@ -120,12 +117,12 @@ export default function Model3D() {
 
         <div className="p-4 flex-1 overflow-auto">
           <div className="mb-3">
-            <p className="text-sm text-zinc-700">
+            <p className="text-sm text-white">
               Modelo: <span className="font-medium">{selectedModel}</span>
             </p>
           </div>
 
-          <div className="rounded-xl overflow-hidden border bg-zinc-50">
+          <div className="rounded-xl overflow-hidden border border-amber-50 bg-blue-300/10">
             {matchedImage ? (
               <img
                 src={matchedImage.url}
@@ -141,7 +138,7 @@ export default function Model3D() {
           </div>
         </div>
 
-        <div className="p-4 border-t">
+        <div className="p-4 border-t-2 border-t-amber-50">
           <button
             onClick={() => setMenuOpen(false)}
             className="w-full rounded-full bg-zinc-900 text-white py-2 text-sm hover:bg-zinc-800 transition"
@@ -169,7 +166,7 @@ export default function Model3D() {
       ) : (
         <button
           onClick={() => setNotaVisible(true)}
-          className="fixed top-4 right-2 z-20 rounded-full bg-white/10 text-white p-1 border-2 border-amber-50 shadow backdrop-blur-md hover:bg-white hover:text-black transition"
+          className="fixed bottom-6 left-2 z-20 rounded-full bg-white/10 text-white p-1 border-2 border-amber-50 shadow backdrop-blur-md hover:bg-white hover:text-black transition"
           aria-label="Mostrar nota"
           title="Mostrar nota"
         >

@@ -11,69 +11,64 @@ export default function ModelLoader({
   poster,
   ar = false,
 }) {
-  // 1) Lista de modelos [{ name (sin ext), url }]
   const { list } = useList({ type: "models" });
 
-  // 2) Cargar <model-viewer> local (offline) una sola vez
+  // Cargar model-viewer (local)
   useEffect(() => {
-    const alreadyDefined = window.customElements?.get("model-viewer");
-    if (alreadyDefined) return;
+    if (window.customElements?.get("model-viewer")) return;
     const script = document.createElement("script");
     script.type = "module";
     script.src = localModelViewer;
     document.head.appendChild(script);
   }, []);
 
-  // 3) Normalizador
   const norm = (s = "") => String(s).trim().toLowerCase().replace(/\s+/g, " ");
-
-  // 4) keywords desde modelName
   const keywords = useMemo(() => {
     const q = norm(modelName);
-    if (!q) return [];
-    return q.split(/[,\s]+/).filter(Boolean);
+    return q ? q.split(/[,\s]+/).filter(Boolean) : [];
   }, [modelName]);
 
-  // 5) Lista “lowercased” para filtrar con includes case-sensitive
-  const loweredItems = useMemo(
+  const lowered = useMemo(
     () => list.map(({ name, url }) => ({ name: norm(name), url })),
     [list]
   );
 
-  // 6) Coincidencia exacta por nombre normalizado (preferida)
-  const exactMatch = useMemo(() => {
+  const exact = useMemo(() => {
     const target = norm(modelName);
     if (!target) return null;
-    return loweredItems.find((it) => it.name === target) || null;
-  }, [loweredItems, modelName]);
+    return lowered.find((it) => it.name === target) || null;
+  }, [lowered, modelName]);
 
-  // 7) Si no hay exacta, usar filtro AND por keywords
-  const filtered = useMemo(() => {
-    if (exactMatch) return [exactMatch];
-    if (!keywords.length) return loweredItems;
-    const { sublist } = useSubList(loweredItems, keywords); // AND
-    return sublist;
-  }, [loweredItems, keywords, exactMatch]);
+  const { sublist } = useSubList(lowered, keywords);
+  const filtered = exact ? [exact] : (keywords.length ? sublist : lowered);
 
-  // 8) URL final: exacta/primer match → “default.glb” si existe → import fallback
   const computedSrc = useMemo(() => {
-    const candidate =
+    return (
       filtered?.[0]?.url ||
       list.find((it) => norm(it.name) === "default")?.url ||
-      defaultModelUrl;
-    return candidate;
+      defaultModelUrl
+    );
   }, [filtered, list]);
 
   return (
-    <div className="fixed inset-0 w-screen h-dvh bg-black">
+    <div
+      className="
+        fixed inset-0 w-screen h-dvh flex items-center justify-center
+        bg-[radial-gradient(circle_at_center,#18223c_0%,#0d1224_70%,#060810_100%)]
+        
+      "
+    >
+      {/* Pequeños glows para iluminacion */}
+      <div className="absolute top-[20%] left-[30%] w-40 h-40 bg-white rounded-full blur-[120px]" />
+      <div className="absolute bottom-[15%] right-[25%] w-56 h-56 bg-blue-500 rounded-full blur-[150px]" />
+
+
       {/* @ts-ignore */}
       <model-viewer
         src={computedSrc}
         alt={alt}
         style={{ width: "100%", height: "100%" }}
         poster={poster}
-        exposure="1"
-        environment-image="neutral"
         camera-controls
         touch-action="pan-y"
         interaction-prompt="auto"
@@ -83,10 +78,19 @@ export default function ModelLoader({
         min-camera-orbit="auto auto 0.5m"
         max-camera-orbit="auto auto 5m"
         interpolation-decay="200"
+
+        /* 💡 Iluminación "Studio Pure Light" */
+        environment-image="neutral"   // luz blanca neutra
+        exposure="1.4"                // brillo general
+        shadow-intensity="0.9"        // sombras marcadas
+        shadow-softness="1"           // suaviza los bordes
+        tone-mapping="aces"           // más realismo
+
+        /* 💫 Ajuste AR opcional */
         ar={ar ? true : undefined}
         ar-modes={ar ? "webxr scene-viewer quick-look" : undefined}
         ar-scale={ar ? "auto" : undefined}
-        shadow-intensity="0.6"
+
         disable-zoom={false}
         ios-src={computedSrc}
       />
