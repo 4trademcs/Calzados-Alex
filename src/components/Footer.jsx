@@ -11,7 +11,7 @@ export default function Footer() {
     BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
   const whatsappMessage = encodeURIComponent(
     BussinesDetail?.contact?.whatsappMessage ??
-      "Hola! Quiero diseñar mi calzado personalizado."
+    "Hola! Quiero diseñar mi calzado personalizado."
   );
 
   // ✅ Enlaces de navegación y servicios (fijos)
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.navegacion.map((link, index) => (
                 <li key={index}>
-                  {}
+                  { }
                   <a
                     href={link.href}
                     className="text-[var(--color-surface)]/70 hover:text-[var(--color-surface)] transition-colors inline-block"
@@ -128,18 +128,15 @@ export default function Footer() {
               reservados.
             </p>
             <div className="flex items-center space-x-6 text-sm">
-              <a
-                href="#"
+              <Link to="/privacy"
                 className="text-[var(--color-surface)]/60 hover:text-[var(--color-surface)] transition-colors"
-              >
-                Política de Privacidad
-              </a>
-              <a
-                href="#"
+              >Política de Privacidad
+              </Link>
+              
+              <Link to="/terms"
                 className="text-[var(--color-surface)]/60 hover:text-[var(--color-surface)] transition-colors"
-              >
-                Términos y Condiciones
-              </a>
+              >Términos y Condiciones
+              </Link>
             </div>
           </div>
         </div>

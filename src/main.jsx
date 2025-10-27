@@ -8,6 +8,8 @@ import App from "./App.jsx";
 import Products from "./pages/Products.jsx";
 import ScrollFrames from "./components/ScrollFrames";
 import Model3D from "./pages/Model3D.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsConditions from "./pages/TermsConditions.jsx"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -21,6 +23,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/frames" element={<ScrollFrames />} />
 
         <Route path="/model" element={<Model3D />} />
+        
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+
+        <Route path="/terms" element={<TermsConditions />} />
 
         {/* Cualquier otra ruta → App */}
         <Route path="*" element={<App />} />

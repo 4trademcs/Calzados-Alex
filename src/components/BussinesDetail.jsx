@@ -21,7 +21,7 @@ const BussinesDetail = {
   categories: [
     { id: "modelos", label: "Calzado Nuevo" },
     { id: "remontes", label: "Remontes" },
-    { id: "promociones", label: "Personalización" },
+    // { id: "promociones", label: "Personalización" },
   ],
 
   // Tabla de precios / planes por categoría
@@ -79,12 +79,12 @@ const BussinesDetail = {
         popular: false,
       },
     ],
-    promociones: [
+    /*promociones: [
       {
         name: "Tacones por cantidad",
         price: "-$300 c/u",
         description: "Rebajas a partir de 5 encargos en adelante",
-        features: ["Aceptamos transferencias"],
+        features: ["No aceptamos transferencias"],
         popular: false,
       },
       {
@@ -98,7 +98,7 @@ const BussinesDetail = {
         ],
         popular: true,
       },
-    ],
+    ],*/
   },
 };
 
