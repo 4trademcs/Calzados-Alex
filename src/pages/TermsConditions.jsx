@@ -185,9 +185,9 @@ const TermsConditions = () => {
             Si tiene alguna pregunta sobre estos términos y condiciones, no dude en contactarnos:
           </p>
           <div className="space-y-2 text-[#D4A574]">
-            <p className="font-semibold">WhatsApp: +1 (555) 123-4567</p>
-            <p className="font-semibold">Dirección: Calle Principal #123, Ciudad</p>
-            <p className="font-semibold">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM</p>
+            <p className="font-semibold">WhatsApp: +(53) 59419319</p>
+            <p className="font-semibold">Dirección:Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba</p>
+            <p className="font-semibold">Horario: en nuetra página principal</p>
           </div>
         </div>
 

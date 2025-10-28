@@ -132,8 +132,8 @@ const PrivacyPolicy = () => {
             personales, puede contactarnos a través de:
           </p>
           <div className="space-y-2 text-[#D4A574]">
-            <p className="font-semibold">WhatsApp: +1 (555) 123-4567</p>
-            <p className="font-semibold">Dirección: Calle Principal #123, Ciudad</p>
+            <p className="font-semibold">WhatsApp: +(53) 59419319</p>
+            <p className="font-semibold">Dirección:Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba</p>
           </div>
         </div>
 

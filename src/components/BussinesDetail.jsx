@@ -3,7 +3,7 @@
 const BussinesDetail = {
   // Datos de contacto
   contact: {
-    whatsappNumbers: [ { number: "59781457", number2: "59781457" }],
+    whatsappNumbers: [ { number: "59419319", number2: "59419319" }],
     address:"Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba",
     whatsappMessage: "Hola! Quiero diseñar mi calzado personalizado.",
     wspInfo: "Quiero información sobre cómo personalizar mi calzado",
