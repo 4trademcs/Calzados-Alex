@@ -1,6 +1,7 @@
 // src/components/CustomizationShowcase.jsx
 import { useState, useEffect, useRef } from "react";
-import { BsWhatsapp } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { GiRunningShoe } from "react-icons/gi";
 import Tooltip from "./Tooltip";
 import BussinesDetail from "./BussinesDetail"; // ← mismo folder
 
@@ -187,16 +188,13 @@ export default function CustomizationShowcase() {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <a
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
-          >
-            <BsWhatsapp className="w-5 h-5" />
-            <span className="font-medium">Comienza tu diseño ahora</span>
-            <span>→</span>
-          </a>
+        <Link
+          to="/products"
+          className="inline-flex items-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          <GiRunningShoe size={30}/>
+          <span className="font-medium">Ver productos</span>
+        </Link>
         </div>
       </div>
     </section>

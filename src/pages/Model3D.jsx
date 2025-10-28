@@ -1,14 +1,14 @@
 // src/pages/Model3D.jsx
-import { useState, useMemo, useEffect, memo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { BsWhatsapp, BsArrow90DegLeft, BsSearch, BsQuestion, BsList } from "react-icons/bs";
 import { Link, useSearchParams } from "react-router-dom";
 import BussinesDetail from "../components/BussinesDetail";
 import ModelLoader from "../components/ModelLoader";
-import { useList } from "../hooks/useList"; // ← para obtener la lista de imágenes
+import { useList } from "../hooks/useList";
 
 export default function Model3D() {
   const [params] = useSearchParams();
-  const initialModel = params.get("model") || "sandalia"; // 👈 nombre del zapato pasado por URL
+  const initialModel = params.get("model") || "sandalia";
   const tipo     = params.get("tipo")     || "sandalias";
   const color    = params.get("color")    || "negro";
   const material = params.get("material") || "charol";
@@ -16,11 +16,20 @@ export default function Model3D() {
   // WhatsApp
   const whatsappNumber = BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
 
-  // Estados para búsqueda y modelo actual
+  // Búsqueda y modelo actual
   const [inputValue, setInputValue] = useState("");
-  const [modelName, setModelName] = useState(initialModel); // 👈 carga inicial desde URL
+  const [modelName, setModelName] = useState(initialModel);
 
-  // Modelo actualmente seleccionado (URL o buscado)
+  // ✅ Debounce: si el usuario deja de escribir 2s, aplicamos el valor
+  useEffect(() => {
+    if (!inputValue.trim()) return;
+    const t = setTimeout(() => {
+      setModelName(inputValue.trim());
+    }, 2000);
+    return () => clearTimeout(t);
+  }, [inputValue]);
+
+  // Modelo seleccionado final
   const selectedModel = useMemo(
     () => (modelName && modelName.trim() ? modelName.trim() : initialModel),
     [modelName, initialModel]
@@ -34,10 +43,7 @@ export default function Model3D() {
     return () => clearTimeout(t);
   }, [notaVisible]);
 
-  // Memo del visor 3D
-  const ModelLoaderMemo = memo(ModelLoader);
-
-  // Mensaje de WhatsApp
+  // Mensaje WhatsApp
   const whatsappMessage = useMemo(() => {
     const msg =
       tipo && selectedModel && color && material
@@ -46,15 +52,17 @@ export default function Model3D() {
     return encodeURIComponent(msg);
   }, [tipo, selectedModel, color, material]);
 
-  // Buscar solo al pulsar botón/Enter
+  // Buscar al pulsar botón o Enter (inmediato, ignora debounce)
   const handleSearch = () => {
     const next = inputValue.trim();
     if (next) setModelName(next);
   };
-  const handleKeyDown = (e) => { if (e.key === "Enter") handleSearch(); };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearch();
+  };
 
   // ======= Menú lateral con la foto original del modelo =======
-  const { list: images } = useList("images");
+  const { list: images } = useList({ type: "images" });
   const [menuOpen, setMenuOpen] = useState(false);
 
   const matchedImage = useMemo(() => {
@@ -82,29 +90,29 @@ export default function Model3D() {
         aria-label="Ver imagen original"
         title="Ver imagen original"
       >
-        <BsList size={25}/>
+        <BsList size={25} />
       </button>
 
-      {/* Panel lateral */}
+      {/* Backdrop del panel */}
       <div
         onClick={() => setMenuOpen(false)}
         className={`fixed inset-0 z-30 bg-black/40 backdrop-blur-sm transition-opacity ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />
+
+      {/* Panel lateral */}
       <aside
         className={`
           fixed top-0 right-0 outline-4 outline-white z-30 h-full w-80 sm:w-96 bg-blue-500/20 backdrop-blur-lg shadow-2xl
           transform transition-transform duration-500
-          ${menuOpen ? "translate-x" : "translate-x-[105%]"}
+          ${menuOpen ? "translate-x-0" : "translate-x-[105%]"}
           flex flex-col
         `}
         aria-label="Menú de imagen del modelo"
       >
         <div className="flex items-center justify-between p-4 border-b-2 border-b-amber-50">
-          <h3 className="text-base font-semibold text-white">
-            Imagen original
-          </h3>
+          <h3 className="text-base font-semibold text-white">Imagen original</h3>
           <button
             onClick={() => setMenuOpen(false)}
             className="rounded-full px-3 py-1 bg-zinc-900 text-white text-sm hover:bg-zinc-800 transition"
@@ -181,7 +189,7 @@ export default function Model3D() {
             type="text"
             placeholder="Buscar modelo..."
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}   // ✅ sin setTimeout aquí
             onKeyDown={handleKeyDown}
             className="flex-1 bg-white/10 shadow backdrop-blur-md text-white placeholder-white/70 border-4 border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 rounded-full"
           />
@@ -208,7 +216,7 @@ export default function Model3D() {
       </a>
 
       {/* ✅ Visor del modelo 3D con nombre pasado por URL */}
-      <ModelLoaderMemo modelName={selectedModel} />
+      <ModelLoader modelName={selectedModel} />
     </section>
   );
 }

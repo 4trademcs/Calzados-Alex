@@ -34,7 +34,7 @@ export default function Features() {
     {
       icon: FiPackage,
       title: "Entrega a Domicilio",
-      description: "Recibe tus zapatos personalizados directamente en tu puerta.",
+      description: "Recibe tus zapatos personalizados directamente en tu puerta por un precio adicional.",
       color: "bg-pink-50 text-pink-600",
     },
     {
