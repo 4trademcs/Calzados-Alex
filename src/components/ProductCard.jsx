@@ -110,7 +110,7 @@ export default function ProductCard({
                 onChange={(e) => setTipo(e.target.value)}
                 aria-label="Seleccionar tipo de calzado"
                 className="
-                  rounded-md border border-gray-300 bg-white px-3 py-2 text-sm
+                  rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm
                   outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                   text-zinc-800 shadow-sm
                 "
@@ -138,7 +138,7 @@ export default function ProductCard({
                 }}
                 aria-label="Seleccionar material del calzado"
                 className="
-                  rounded-md border border-gray-300 bg-white px-3 py-2 text-sm
+                  rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm
                   outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
                   text-zinc-800 shadow-sm
                 "

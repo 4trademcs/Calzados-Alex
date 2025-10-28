@@ -57,8 +57,8 @@ export default function Preloader({events = ["load"], minDurationMs = 3000, watc
     <div className="relative w-full h-full" aria-busy={overlayVisible}>
       {overlayVisible && (
         <div className={`absolute inset-0 grid place-content-center bg-[#0d1224] z-10`}>
-          <ImSpinner2 className="animate-spin m-auto" color="1d293d" size={100} />
-          <h2 className="mt-4 animate-pulse text-slate-600 text-xl text-center">
+          <ImSpinner2 className="animate-spin m-auto" color="fff" size={100} />
+          <h2 className="mt-4 animate-pulse text-white/80 text-xl text-center">
             Cargando modelo 3D…
           </h2>
         </div>

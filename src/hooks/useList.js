@@ -13,11 +13,18 @@ const modulesModels = import.meta.glob("/src/models/*.glb", {
   import: "default",
 });
 
-/** Convierte el objeto retornado por import.meta.glob a una lista limpia: */
+/**
+ * Convierte el objeto retornado por import.meta.glob a una lista limpia
+ * y la ordena de forma natural (1, 2, 10...) en lugar de alfabéticamente.
+ */
 function toList(modules, { sort = "asc" } = {}) {
-  const entries = Object.entries(modules).sort((a, b) =>
-    sort === "desc" ? b[0].localeCompare(a[0]) : a[0].localeCompare(b[0])
-  );
+  const entries = Object.entries(modules).sort(([a], [b]) => {
+    const order = a.localeCompare(b, undefined, {
+      numeric: true,       // ✅ orden natural (no alfabético)
+      sensitivity: "base", // ignora mayúsculas/tildes
+    });
+    return sort === "desc" ? -order : order;
+  });
 
   return entries.map(([path, url]) => {
     const file = path.split("/").pop();
@@ -34,6 +41,5 @@ function toList(modules, { sort = "asc" } = {}) {
 export function useList({ type = "images", sort = "asc" } = {}) {
   const modules = type === "models" ? modulesModels : modulesImages;
   const list = toList(modules, { sort });
-  console.log(list)
   return { list };
 }
