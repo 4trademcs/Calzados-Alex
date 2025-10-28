@@ -7,7 +7,7 @@ export default function ScrollFrames() {
   const currentFrameRef = useRef(0);
   const totalFramesRef = useRef(154); // ajusta si cambia
 
-  const getFrameSrc = (index) => encodeURI(`/frames/bg (${index + 1}).jpg`);
+  const getFrameSrc = (index) => encodeURI(`/frames/bg (${index + 1}).webp`);
 
   const updateImage = (frame) => {
     if (!imgRef.current) return;

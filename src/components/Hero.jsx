@@ -116,7 +116,7 @@ export default function Hero() {
               {/* Main Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/women-s-low-heel-elegant-sandals-black.jpg"
+                  src="/women-s-low-heel-elegant-sandals-black.webp"
                   alt="Zapatos artesanales Calzados Suárez"
                   className="w-full h-[600px] object-cover"
                 />

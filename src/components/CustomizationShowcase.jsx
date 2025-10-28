@@ -16,28 +16,28 @@ export default function CustomizationShowcase() {
       title: "Elige el Modelo Base",
       description:
         "Selecciona entre nuestra colección de diseños exclusivos, Observalo en 3D! Ten una idea de como luce tu zapato incluso antes de tenerlo!",
-      image: "/women-s-shoe-measurement-fitting-custom-size.jpg",
+      image: "/women-s-shoe-measurement-fitting-custom-size.webp",
     },
     {
       number: "02",
       title: "Combina Estilos",
       description:
         "Siéntete libre: Mezcla la parte delantera de un modelo con la trasera de otro si lo deseas o quédate con el modelo original.",
-      image: "/shoe-design-customization-parts.jpg",
+      image: "/shoe-design-customization-parts.webp",
     },
     {
       number: "03",
       title: "Selecciona tu Tacón y colores",
       description:
         "Bajo, medio o alto - tú decides la altura perfecta, observa siempre nuestros colores disponibles",
-      image: "/different-heel-heights-shoes.jpg",
+      image: "/different-heel-heights-shoes.webp",
     },
     {
       number: "04",
       title: "Medidas Exactas",
       description:
         "Proporcionamos tu número de pie o usa nuestra plantilla personalizada para un ajuste perfecto",
-      image: "/shoe-measurement-fitting.jpg",
+      image: "/shoe-measurement-fitting.webp",
     },
   ];
 

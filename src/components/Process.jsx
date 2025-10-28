@@ -118,7 +118,7 @@ export default function Process() {
               </ul>
             </div>
             <div className="relative">
-              <img src="/artisan-crafting-leather-shoes-workshop.jpg" alt="Proceso artesanal" className="rounded-2xl shadow-2xl" />
+              <img src="/artisan-crafting-leather-shoes-workshop.webp" alt="Proceso artesanal" className="rounded-2xl shadow-2xl" />
             </div>
           </div>
         </div>

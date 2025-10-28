@@ -7,15 +7,15 @@ export default function Gallery() {
   const sectionRef = useRef(null)
 
   const images = [
-    { id: 1, url: "/elegant-brown-leather-heels.jpg", category: "Tacones" },
-    { id: 2, url: "/women-s-platform-sandals-high-heel-gold.jpg", category: "Tiras finas" },
-    { id: 3, url: "/women-s-shoes-with-different-heel-heights-low-medi.jpg", category: "Tiras medias" },
-    { id: 4, url: "/artisan-red-leather-pumps.jpg", category: "Tacones medios" },
-    { id: 5, url: "/elegant-women-s-high-heel-sandals-handmade-artisan.jpg", category: "Sandalias" },
-    { id: 6, url: "/collection-of-women-s-elegant-sandals-different-st.jpg", category: "Remontes" },
-    { id: 7, url: "/elegant-women-s-high-heel-sandals-beige.jpg", category: "Suelas" },
-    { id: 8, url: "/elegant-women-s-mule-sandals-low-heel.jpg", category: "Plantillas" },
-    { id: 9, url: "/custom-leather-wedges.jpg", category: "Tacones Altos" },
+    { id: 1, url: "/elegant-brown-leather-heels.webp", category: "Tacones" },
+    { id: 2, url: "/women-s-platform-sandals-high-heel-gold.webp", category: "Tiras finas" },
+    { id: 3, url: "/women-s-shoes-with-different-heel-heights-low-medi.webp", category: "Tiras medias" },
+    { id: 4, url: "/artisan-red-leather-pumps.webp", category: "Tacones medios" },
+    { id: 5, url: "/elegant-women-s-high-heel-sandals-handmade-artisan.webp", category: "Sandalias" },
+    { id: 6, url: "/collection-of-women-s-elegant-sandals-different-st.webp", category: "Remontes" },
+    { id: 7, url: "/elegant-women-s-high-heel-sandals-beige.webp", category: "Suelas" },
+    { id: 8, url: "/elegant-women-s-mule-sandals-low-heel.webp", category: "Plantillas" },
+    { id: 9, url: "/custom-leather-wedges.webp", category: "Tacones Altos" },
   ]
 
   useEffect(() => {
