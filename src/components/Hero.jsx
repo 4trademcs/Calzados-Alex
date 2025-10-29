@@ -124,7 +124,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute bottom-1 -left-3 bg-[var(--color-surface)] p-6 rounded-2xl shadow-xl max-w-xs animate-float">
+              <div className="absolute bottom-1 -right-3 bg-[var(--color-surface)] p-6 rounded-2xl shadow-xl max-w-xs animate-float">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-full flex items-center justify-center">
                     <svg
@@ -147,7 +147,7 @@ export default function Hero() {
               </div>
 
               <div
-                className="absolute top-6 -right-4 bg-[var(--color-primary)] text-[var(--color-surface)] p-6 rounded-2xl shadow-xl animate-float"
+                className="absolute top-6 -left-4 bg-[var(--color-primary)] text-[var(--color-surface)] p-6 rounded-2xl shadow-xl animate-float"
                 style={{ animationDelay: "1s" }}
               >
                 <p className="text-3xl font-serif font-bold mb-1">∞</p>
