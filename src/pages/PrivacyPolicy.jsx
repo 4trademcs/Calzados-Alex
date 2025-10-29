@@ -1,6 +1,6 @@
-import { Shield, Lock, Eye, FileText, Phone, MapPin } from "lucide-react"
+import { Shield, Lock, Eye, FileText, Phone, MapPin } from "lucide-react";
 
-const PrivacyPolicy = () => {
+export default function PrivacyPolicy() {
   const sections = [
     {
       icon: FileText,
@@ -69,24 +69,23 @@ const PrivacyPolicy = () => {
         "Puede solicitar la eliminación de su dirección de nuestros registros",
       ],
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F1E8] to-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#F5F1E8] to-white flex flex-col">
       {/* Header */}
-      <div className="bg-[#2C1810] text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <Shield className="w-12 h-12 text-[#D4A574]" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Política de Privacidad</h1>
-          <p className="text-center text-[#D4A574] text-lg">Alex Suarez - Zapatería Artesanal</p>
-          <p className="text-center text-gray-300 mt-2">Última actualización: Enero 2025</p>
+      <header className="bg-[#2C1810] text-white py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <Shield className="w-12 h-12 mx-auto mb-4 text-[#D4A574]" />
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Política de Privacidad</h1>
+          <p className="text-[#D4A574] text-lg">Alex Suarez - Zapatería Artesanal</p>
+          <p className="text-gray-300 mt-2">Última actualización: Enero 2025</p>
         </div>
-      </div>
+      </header>
 
-      {/* Introduction */}
-      <div className="max-w-4xl mx-auto px-4 py-12">
+      {/* Main Content */}
+      <section className="flex-1 max-w-4xl mx-auto px-4 py-12">
+        {/* Introducción */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-[#D4A574]/20">
           <p className="text-gray-700 leading-relaxed text-lg">
             En <span className="font-semibold text-[#2C1810]">Alex Suarez Zapatería Artesanal</span>, valoramos
@@ -96,10 +95,10 @@ const PrivacyPolicy = () => {
           </p>
         </div>
 
-        {/* Sections */}
+        {/* Secciones */}
         <div className="space-y-6">
           {sections.map((section, index) => (
-            <div
+            <article
               key={index}
               className="bg-white rounded-2xl shadow-lg p-8 border border-[#D4A574]/20 hover:shadow-xl transition-shadow duration-300"
             >
@@ -117,11 +116,11 @@ const PrivacyPolicy = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Contact Section */}
+        {/* Contacto */}
         <div className="bg-gradient-to-r from-[#2C1810] to-[#4A2818] rounded-2xl shadow-lg p-8 mt-8 text-white">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
             <Phone className="w-6 h-6 text-[#D4A574]" />
@@ -133,20 +132,20 @@ const PrivacyPolicy = () => {
           </p>
           <div className="space-y-2 text-[#D4A574]">
             <p className="font-semibold">WhatsApp: +(53) 59419319</p>
-            <p className="font-semibold">Dirección:Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba</p>
+            <p className="font-semibold">
+              Dirección: Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba
+            </p>
           </div>
         </div>
 
-        {/* Footer Note */}
-        <div className="mt-8 p-6 bg-[#D4A574]/10 rounded-xl border border-[#D4A574]/30">
+        {/* Nota final */}
+        <footer className="mt-8 p-6 bg-[#D4A574]/10 rounded-xl border border-[#D4A574]/30">
           <p className="text-sm text-gray-600 text-center leading-relaxed">
             Nos reservamos el derecho de actualizar esta política de privacidad. Cualquier cambio será notificado a
             través de nuestros canales de comunicación habituales.
           </p>
-        </div>
-      </div>
-    </div>
-  )
+        </footer>
+      </section>
+    </main>
+  );
 }
-
-export default PrivacyPolicy

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
+import { GiHighHeel } from "react-icons/gi";
 import BussinesDetail from "./BussinesDetail"; // ← datos del negocio
 import { Link } from "react-router-dom";
 
@@ -78,8 +79,10 @@ export default function Navbar() {
                 </a>
               ))}
                <Link to="/products"
-               className="text-[var(--color-foreground)] hover:text-[var(--color-secondary)] transition-colors text-sm font-medium"
-               >Galería</Link>
+               className="flex gap-2 items-center space-x-2 bg-[var(--color-primary)] text-[var(--color-surface)] px-5 py-2.5 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105"
+               >
+                <GiHighHeel size={20}/>
+                Galería</Link>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
@@ -149,8 +152,10 @@ export default function Navbar() {
               </a>             
             ))}
              <Link to="/products"
-               className="block px-4 py-3 rounded-lg text-[var(--color-foreground)] hover:bg-[var(--color-muted)] transition-colors font-medium"
-               >Galería</Link>
+               className="flex flex-row gap-2 px-4 py-3 rounded-lg text-[var(--color-foreground)] hover:bg-[var(--color-muted)] transition-colors font-medium"
+               >Galería
+                {/* <GiHighHeel size={20}/> */}
+                </Link>
           </nav>
 
           <div className="mt-8 pt-8 border-t border-[var(--color-border)]">

@@ -1,7 +1,7 @@
 // src/components/CustomizationShowcase.jsx
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { GiRunningShoe } from "react-icons/gi";
+import { GiHighHeel } from "react-icons/gi";
 import Tooltip from "./Tooltip";
 import BussinesDetail from "./BussinesDetail"; // ← mismo folder
 
@@ -192,7 +192,7 @@ export default function CustomizationShowcase() {
           to="/products"
           className="inline-flex items-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
         >
-          <GiRunningShoe size={30}/>
+          <GiHighHeel size={30}/>
           <span className="font-medium">Ver productos</span>
         </Link>
         </div>

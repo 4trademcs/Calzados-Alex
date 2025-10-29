@@ -19,7 +19,7 @@ export default function Tooltip({ children, content, position = "top" }) {
       {children}
       {isVisible && (
         <div
-          className={`absolute z-50 px-3 py-2 text-sm text-[var(--color-surface)] bg-[var(--color-primary)] rounded-lg shadow-lg whitespace-nowrap pointer-events-none transition-opacity duration-200 ${positionClasses[position]}`}
+          className={`absolute z-50 px-3 py-2 text-sm text-[var(--color-surface)] bg-[var(--color-primary)] rounded-lg shadow shadow-amber-50 whitespace-nowrap pointer-events-none transition-opacity duration-200 ${positionClasses[position]}`}
         >
           {content}
           <div

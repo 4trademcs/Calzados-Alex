@@ -48,7 +48,7 @@ export default function Products() {
   };
 
   return (
-    <main className="mx-auto flex min-h-dvh flex-col items-center justify-start px-4 py-20 pt-40 gap-8">
+    <main className="mx-auto flex min-h-dvh flex-col items-center justify-start px-4 py-20 pt-52 gap-8">
       {/* ← Ir atrás */}
       <Link
         to="/"

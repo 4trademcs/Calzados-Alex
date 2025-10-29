@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { FaRegStar, FaBasketShopping } from "react-icons/fa6";
-import { GiRunningShoe } from "react-icons/gi";
+import { GiHighHeel } from "react-icons/gi";
 import { BsWhatsapp, BsX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import BussinesDetail from "../components/BussinesDetail";
@@ -206,7 +206,7 @@ export default function ProductCard({
               title="Ver en 3D"
               aria-label="Ver en 3D"
             >
-              <GiRunningShoe size={30} />
+              <GiHighHeel size={30} />
             </Link>
           </div>
         </div>
@@ -325,7 +325,7 @@ export default function ProductCard({
                 title="Ver en 3D"
                 aria-label="Ver en 3D"
               >
-                <GiRunningShoe size={30} /> Ver en 3D
+                <GiHighHeel size={30} /> Ver en 3D
               </Link>
               <a
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}

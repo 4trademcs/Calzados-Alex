@@ -3,7 +3,7 @@ import { BsWhatsapp, BsArrowDown } from "react-icons/bs";
 import { FiMapPin } from "react-icons/fi";
 import BussinesDetail from "./BussinesDetail"; // ← Importa los datos del negocio
 import { Link } from "react-router-dom";
-import { GiRunningShoe } from "react-icons/gi";
+import { GiHighHeel } from "react-icons/gi";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -61,7 +61,7 @@ export default function Hero() {
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
+                className="group flex items-center justify-center space-x-3 bg-green-500 text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 <BsWhatsapp className="w-5 h-5" />
                 <span className="font-medium">Contactar x Whatsapp</span>
@@ -69,10 +69,10 @@ export default function Hero() {
 
               <Link
                 to="/products"
-                className="flex flex-row items-center justify-center space-x-3 bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-8 py-4 rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-surface)] transition-all duration-300"
+                className="flex flex-row items-center justify-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] border-2 border-[var(--color-primary)] px-8 py-4 rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-surface)] transition-all duration-300 hover:scale-105"
               >
-                <GiRunningShoe size={30}/>
-                <span className="font-medium hover:scale-125 duration-200 transition-transform">Ver productos</span>
+                <GiHighHeel size={30}/>
+                <span className="font-medium duration-200 transition-transform">Ver productos</span>
               </Link>
             </div>
 
