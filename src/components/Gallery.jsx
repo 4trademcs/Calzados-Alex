@@ -7,15 +7,15 @@ export default function Gallery() {
   const sectionRef = useRef(null)
 
   const images = [
-    { id: 1, url: "/elegant-brown-leather-heels.webp", category: "Tacones" },
-    { id: 2, url: "/women-s-platform-sandals-high-heel-gold.webp", category: "Tiras finas" },
-    { id: 3, url: "/women-s-shoes-with-different-heel-heights-low-medi.webp", category: "Tiras medias" },
+    { id: 1, url: "/elegant-brown-leather-heels.webp", category: "" },
+    { id: 2, url: "/women-s-wedge-sandals-medium-heel-cork.webp", category: "Remonte y pegado" },
+    { id: 3, url: "/women-s-shoes-with-different-heel-heights-low-medi.webp", category: "Tiras Finas" },
     { id: 4, url: "/artisan-red-leather-pumps.webp", category: "Tacones medios" },
-    { id: 5, url: "/elegant-women-s-high-heel-sandals-handmade-artisan.webp", category: "Sandalias" },
-    { id: 6, url: "/collection-of-women-s-elegant-sandals-different-st.webp", category: "Remontes" },
-    { id: 7, url: "/elegant-women-s-high-heel-sandals-beige.webp", category: "Suelas" },
-    { id: 8, url: "/elegant-women-s-mule-sandals-low-heel.webp", category: "Plantillas" },
-    { id: 9, url: "/custom-leather-wedges.webp", category: "Tacones Altos" },
+    { id: 5, url: "/elegant-women-s-high-heel-sandals-handmade-artisan.webp", category: "Tiras" },
+    { id: 6, url: "/collection-of-women-s-elegant-sandals-different-st.webp", category: "Modelos" },
+    { id: 7, url: "/elegant-women-s-high-heel-sandals-beige.webp", category: "Tacon Medio" },
+    { id: 8, url: "/elegant-women-s-mule-sandals-low-heel.webp", category: " Estilo Hermes" },
+    { id: 9, url: "/custom-leather-wedges.webp", category: "Sandalias" },
   ]
 
   useEffect(() => {
