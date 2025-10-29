@@ -147,7 +147,7 @@ export default function Hero() {
               </div>
 
               <div
-                className="absolute top-6 -left-4 bg-[var(--color-primary)] text-[var(--color-surface)] p-6 rounded-2xl shadow-xl animate-float"
+                className="absolute top-6 -left-3 bg-[var(--color-primary)] text-[var(--color-surface)] p-6 rounded-2xl shadow-xl animate-float"
                 style={{ animationDelay: "1s" }}
               >
                 <p className="text-3xl font-serif font-bold mb-1">∞</p>
