@@ -69,7 +69,7 @@ export default function Hero() {
 
               <Link
                 to="/products"
-                className="flex flex-row items-center justify-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] border-2 border-[var(--color-primary)] px-8 py-4 rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-surface)] transition-all duration-300 hover:scale-105"
+                className="flex flex-row items-center  justify-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] border-2 border-[var(--color-primary)] px-8 py-4 rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-surface)] transition-all duration-300 hover:scale-105"
               >
                 <GiHighHeel size={30}/>
                 <span className="font-medium duration-200 transition-transform">Ver productos</span>

@@ -84,9 +84,9 @@ export default function Process() {
           ))}
         </div>
 
-        <div className="mt-16 bg-[var(--color-surface)]/10 backdrop-blur-sm rounded-3xl p-8 sm:p-12">
+        <div className="mt-16 bg-[var(--color-surface)]/10 backdrop-blur-sm rounded-3xl ">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+            <div className="p-8 sm:p-12">
               <h3 className="font-serif text-3xl mb-4">Tu visión, nuestra artesanía</h3>
               <p className="text-[var(--color-surface)]/80 leading-relaxed mb-6">
                 En Calzados Suárez, entendemos que cada pie es único y cada estilo es personal. Por eso ofrecemos la
@@ -117,7 +117,7 @@ export default function Process() {
                 ))}
               </ul>
             </div>
-            <div className="relative">
+            <div className="relative flex justify-end ">
               <img src="/artisan-crafting-leather-shoes-workshop.webp" alt="Proceso artesanal" className="rounded-2xl shadow-2xl" />
             </div>
           </div>

@@ -190,7 +190,7 @@ export default function CustomizationShowcase() {
         <div className="mt-16 text-center">
         <Link
           to="/products"
-          className="inline-flex items-center space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
+          className="inline-flex items-center animate-float space-x-3 bg-[var(--color-primary)] text-[var(--color-surface)] px-8 py-4 rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 hover:scale-105 shadow-lg"
         >
           <GiHighHeel size={30}/>
           <span className="font-medium">Ver productos</span>
