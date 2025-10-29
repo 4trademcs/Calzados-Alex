@@ -7,7 +7,7 @@ export default function Gallery() {
   const sectionRef = useRef(null)
 
   const images = [
-    { id: 1, url: "/elegant-brown-leather-heels.webp", category: "" },
+    { id: 1, url: "/elegant-brown-leather-heels.webp", category: "Entretejidos" },
     { id: 2, url: "/women-s-wedge-sandals-medium-heel-cork.webp", category: "Remonte y pegado" },
     { id: 3, url: "/women-s-shoes-with-different-heel-heights-low-medi.webp", category: "Tiras Finas" },
     { id: 4, url: "/artisan-red-leather-pumps.webp", category: "Tacones medios" },

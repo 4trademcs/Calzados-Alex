@@ -10,7 +10,7 @@ import Location from "./components/Location"
 import Footer from "./components/Footer"
 import ScrollIndicator from "./components/ScrollIndicator"
 import Loader from "./components/Loader"
-import Products from "./pages/Products";
+import ThreeDShowcase from "./components/ThreeDShowcase"
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -36,6 +36,7 @@ export default function App() {
       <Features />
       <CustomizationShowcase />
       <Process />
+      <ThreeDShowcase/>
       <Gallery />
       <Pricing />
       <Location />
