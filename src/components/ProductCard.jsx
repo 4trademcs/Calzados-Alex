@@ -18,10 +18,11 @@ const CHAROL_BLOCKED = [ 2, 4, 10, 11, 19, 21, 22, 26, 31, 32, 43, 44, 46, 47, 5
 const TIPO_BAJO_BLOCKED = [7];
 const TIPO_MEDIO_BLOCKED = [7];
 const TIPO_ALTO_BLOCKED = [7];
-const SANDALIAS_BLOCKED = []; // ← estos modelos NO pueden elegir sandalias
+const SANDALIAS_BLOCKED = [];
 
 /* Modelos no disponibles (se muestran en B/N) */
 const UNAVAILABLE = [33];
+const NEW =[2];
 
 /* ===================== Helpers ===================== */
 function getModelNumber(name, id) {
@@ -101,6 +102,8 @@ export default function ProductCard({
     modelNumber != null && CHAROL_BLOCKED.includes(modelNumber);
   const isUnavailable =
     modelNumber != null && UNAVAILABLE.includes(modelNumber);
+  const isNewModel =
+    isNew || (modelNumber != null && NEW.includes(modelNumber));
 
   const TYPE_OPTIONS = [
     { value: "bajo", label: "Tacón bajo", disabled: tipoBlocked.bajo },
@@ -228,6 +231,24 @@ export default function ProductCard({
           data-out={isOut || undefined}
           data-prioritize={prioritize || undefined}
         >
+          {/* Badges absolutas */}
+          {isNewModel && (
+            <img
+              src="/new.webp"
+              alt="Nuevo"
+              className="pointer-events-none select-none absolute top-2 right-2 w-12 h-12 z-20"
+              loading="lazy"
+            />
+          )}
+          {isUnavailable && (
+            <img
+              src="/unavailable.webp"
+              alt="No disponible"
+              className="pointer-events-none select-none absolute top-2 right-2 w-12 h-12 z-20"
+              loading="lazy"
+            />
+          )}
+
           <div className="basicInfo relative rounded-[25px] bg-[#f5f5f5] p-5 pb-10 select-none">
             {/* Title */}
             <h3 className="name title mb-2 pb-[3px] text-lg font-bold text-zinc-900">
