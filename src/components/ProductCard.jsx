@@ -1,10 +1,72 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { FaRegStar, FaBasketShopping } from "react-icons/fa6";
 import { GiHighHeel } from "react-icons/gi";
 import { BsWhatsapp, BsX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import BussinesDetail from "../components/BussinesDetail";
 import Tooltip from "./Tooltip";
+
+/* ===================== Constantes ampliables ===================== */
+const BASE_PRICE = 2000;
+const EXCEPTIONS_BASE_2500 = [8, 10, 14, 21, 26, 46, 13, 16];
+
+const TYPE_SURCHARGE = { bajo: 1000, medio: 1000, alto: 1500, sandalias: 0 };
+const MATERIAL_SURCHARGE = { "Tela Durazno": 0, Charol: 500 };
+
+/* Tipo bloqueado por modelo (listas preparadas para crecer) */
+const CHAROL_BLOCKED = [ 2, 4, 10, 11, 19, 21, 22, 26, 31, 32, 43, 44, 46, 47, 50,];
+const TIPO_BAJO_BLOCKED = [7];
+const TIPO_MEDIO_BLOCKED = [7];
+const TIPO_ALTO_BLOCKED = [7];
+const SANDALIAS_BLOCKED = []; // ← estos modelos NO pueden elegir sandalias
+
+/* Modelos no disponibles (se muestran en B/N) */
+const UNAVAILABLE = [33];
+
+/* ===================== Helpers ===================== */
+function getModelNumber(name, id) {
+  const m = String(name ?? "").match(/\d+/);
+  if (m) return Number(m[0]);
+  const idNum = Number(id);
+  return Number.isFinite(idNum) ? idNum : null;
+}
+
+function normalizeTipo(value) {
+  const v = String(value || "").toLowerCase();
+  if (v.includes("alto")) return "alto";
+  if (v.includes("bajo")) return "bajo";
+  if (v.includes("sand")) return "sandalias";
+  return "medio";
+}
+
+function computePrice(modelNumber, tipo, material) {
+  const base = modelNumber != null && EXCEPTIONS_BASE_2500.includes(modelNumber)
+      ? 2500
+      : BASE_PRICE;
+  const t = normalizeTipo(tipo);
+  return base + (TYPE_SURCHARGE[t] ?? 0) + (MATERIAL_SURCHARGE[material] ?? 0);
+}
+
+/* Devuelve si cada tipo está bloqueado para el modelo dado */
+function getTipoBlockedFlags(modelNumber) {
+  const num = modelNumber ?? -1;
+  return {
+    bajo: TIPO_BAJO_BLOCKED.includes(num),
+    medio: TIPO_MEDIO_BLOCKED.includes(num),
+    alto: TIPO_ALTO_BLOCKED.includes(num),
+    sandalias: SANDALIAS_BLOCKED.includes(num),
+  };
+}
+
+/* Encuentra el primer tipo permitido según un orden de preferencia */
+function coerceTipo(tipoActual, blocked) {
+  const order = ["medio", "bajo", "alto", "sandalias"];
+  const t = normalizeTipo(tipoActual);
+  if (!blocked[t]) return t;
+  // busca el primero permitido
+  const next = order.find((k) => !blocked[k]) ?? "medio";
+  return next;
+}
 
 export default function ProductCard({
   id,
@@ -18,10 +80,8 @@ export default function ProductCard({
   onShoeClick = () => {},
   materials = ["Tela Durazno", "Charol"],
 }) {
-  // ✅ src seguro (image no existe en props)
   const src = url || "/placeholder.svg";
 
-  // ✅ Nombre bonito
   const displayName = useMemo(() => {
     const pretty = String(name ?? "")
       .replace(/[-_]+/g, " ")
@@ -31,18 +91,24 @@ export default function ProductCard({
   }, [name]);
 
   const modelVal = name || "Sandalia";
+  const modelNumber = useMemo(() => getModelNumber(name, id), [name, id]);
 
-  // ✅ Valores internos coherentes
+  const tipoBlocked = useMemo(
+    () => getTipoBlockedFlags(modelNumber),
+    [modelNumber]
+  );
+  const blockedCharol =
+    modelNumber != null && CHAROL_BLOCKED.includes(modelNumber);
+  const isUnavailable =
+    modelNumber != null && UNAVAILABLE.includes(modelNumber);
+
   const TYPE_OPTIONS = [
-    { value: "bajo", label: "Tacón bajo" },
-    { value: "medio", label: "Tacón medio" },
-    { value: "alto", label: "Tacón alto" },
-    { value: "sandalias", label: "Sandalias" },
+    { value: "bajo", label: "Tacón bajo", disabled: tipoBlocked.bajo },
+    { value: "medio", label: "Tacón medio", disabled: tipoBlocked.medio },
+    { value: "alto", label: "Tacón alto", disabled: tipoBlocked.alto },
+    { value: "sandalias", label: "Sandalias", disabled: tipoBlocked.sandalias },
   ];
 
-  const PRICE_BY_TYPE = { bajo: 3000, medio: 3500, alto: 3500, sandalias: 2500 };
-
-  // ✅ Colores por material (incluye “Tela Durazno”)
   const COLORS_BY_MATERIAL = {
     "Tela Durazno": [
       "Negro",
@@ -73,27 +139,54 @@ export default function ProductCard({
     Blanco: "#FFFFFF",
   };
 
-  // ✅ Estado tipo usa claves internas; si initialType no es válida, cae en "medio"
-  const [tipo, setTipo] = useState(PRICE_BY_TYPE[initialType] ? initialType : "medio");
+  /* Estado */
+  const [tipo, setTipo] = useState(coerceTipo(initialType, tipoBlocked));
+  const defaultMaterial = materials[0] || "Tela Durazno";
+  const [material, setMaterial] = useState(
+    blockedCharol && defaultMaterial === "Charol"
+      ? "Tela Durazno"
+      : defaultMaterial
+  );
 
-  // ✅ Material y color inicial coherentes
-  const [material, setMaterial] = useState(materials[0]);
-  const initialColor =
-    COLORS_BY_MATERIAL[materials[0]]?.[0] ?? Object.keys(COLOR_HEX)[0] ?? "Negro";
+  const initialColor = COLORS_BY_MATERIAL[material]?.[0] ?? Object.keys(COLOR_HEX)[0] ?? "Negro";
   const [colorName, setColorName] = useState(initialColor);
 
   const [showColorModal, setShowColorModal] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
 
-  const colorHex = COLOR_HEX[colorName] ?? "#000000";
-  const availableColors = useMemo(() => COLORS_BY_MATERIAL[material] || [], [material]);
-  const price = useMemo(() => PRICE_BY_TYPE[tipo], [tipo]);
+  /* Correcciones al cambiar restricciones */
+  useEffect(() => {
+    // Corrige tipo si el actual está bloqueado para este modelo
+    setTipo((prev) => coerceTipo(prev, tipoBlocked));
+  }, [tipoBlocked.bajo, tipoBlocked.medio, tipoBlocked.alto, tipoBlocked.sandalias]);
 
-  // ✅ Querystring correcto (template literal)
+  useEffect(() => {
+    // Charol bloqueado → mover a primer material válido
+    if (blockedCharol && material === "Charol") {
+      const fallback = materials.find((m) => m !== "Charol") || "Tela Durazno";
+      setMaterial(fallback);
+      const first = COLORS_BY_MATERIAL?.[fallback]?.[0];
+      if (first) setColorName(first);
+    }
+  }, [blockedCharol, material, materials]);
+
+  const availableColors = useMemo(
+    () => COLORS_BY_MATERIAL[material] || [],
+    [material]
+  );
+  const colorHex = COLOR_HEX[colorName] ?? "#000000";
+
+  /* Precio dinámico */
+  const price = useMemo(
+    () => computePrice(modelNumber, tipo, material),
+    [modelNumber, tipo, material]
+  );
+
+  /* Querystring */
   const search = useMemo(() => {
     const params = new URLSearchParams({
       model: modelVal || "",
-      tipo: tipo || "",
+      tipo: normalizeTipo(tipo) || "",
       color: colorName || "",
       material: material || "",
     });
@@ -108,23 +201,27 @@ export default function ProductCard({
     "group-hover:bg-[#f5f5f5] group-focus-within:bg-[#f5f5f5] focus:outline-none " +
     "group-hover:animate-bounce group-focus-within:animate-bounce cursor-pointer";
 
-  const whatsappNumber =
-    BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
+  const whatsappNumber =  BussinesDetail?.contact?.whatsappNumbers?.[0]?.number ?? "00000000";
+  const TYPE_LABEL = useMemo(() =>
+      TYPE_OPTIONS.find((t) => t.value === normalizeTipo(tipo))?.label ?? "Tacón medio",
+    [tipo, TYPE_OPTIONS]
+  );
 
-  // ✅ Mensaje con template literal + encode
   const whatsappMessage = useMemo(() => {
-    const msg = `Hola quiero hacer mi pedido del modelo: ${modelVal} 
-    de tipo de suela: ${TYPE_OPTIONS.find((t) => t.value === tipo)?.label}
-    y color: ${colorName} del material: ${material}.`;
+    const msg = `Hola quiero hacer mi pedido del modelo: ${displayName} de tipo de suela: ${
+      TYPE_OPTIONS.find((o) => o.value === normalizeTipo(tipo))?.label
+    } y color: ${colorName} del material: ${material}.`;
     return encodeURIComponent(msg);
-  }, [modelVal, tipo, colorName, material]);
+  }, [modelVal, TYPE_LABEL, colorName, material]);
 
   return (
     <>
       <Tooltip content={`Material actual: ${material}`} position="top">
         <article
           tabIndex={0}
-          className="group relative w-[300px] rounded-[30px] bg-[var(--color-item)] transition"
+          className={`group relative w-[300px] rounded-[30px] bg-[var(--color-item)] transition ${
+            isUnavailable ? "grayscale opacity-80" : ""
+          }`}
           style={{ "--color-item": isSeller ? "#f26a5f" : "#2B2B2B" }}
           data-new={isNew || undefined}
           data-seller={isSeller || undefined}
@@ -152,13 +249,17 @@ export default function ProductCard({
                 </label>
                 <select
                   id={`tipo-${id}`}
-                  value={tipo}
+                  value={normalizeTipo(tipo)}
                   onChange={(e) => setTipo(e.target.value)}
                   aria-label="Seleccionar tipo de calzado"
                   className="rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
                 >
                   {TYPE_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
+                    <option
+                      key={opt.value}
+                      value={opt.value}
+                      disabled={opt.disabled}
+                    >
                       {opt.label}
                     </option>
                   ))}
@@ -186,7 +287,11 @@ export default function ProductCard({
                   className="rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
                 >
                   {materials.map((m) => (
-                    <option key={m} value={m}>
+                    <option
+                      key={m}
+                      value={m}
+                      disabled={m === "Charol" && blockedCharol}
+                    >
                       {m}
                     </option>
                   ))}
@@ -253,7 +358,7 @@ export default function ProductCard({
                     id,
                     name: modelVal,
                     src,
-                    tipo,
+                    tipo: normalizeTipo(tipo),
                     color: colorName,
                     material,
                     price,
@@ -299,8 +404,8 @@ export default function ProductCard({
                 Elegir color ({material})
               </h3>
               <p className="text-sm text-zinc-600">
-                Toca un color para seleccionarlo. Cambia el material desde el selector
-                superior.
+                Toca un color para seleccionarlo. Cambia el material desde el
+                selector superior.
               </p>
             </div>
 
@@ -314,7 +419,9 @@ export default function ProductCard({
                     type="button"
                     onClick={() => setColorName(n)}
                     className={`h-10 w-10 rounded-full border-2 transition ${
-                      active ? "scale-110 border-zinc-800" : "border-zinc-300 hover:scale-105"
+                      active
+                        ? "scale-110 border-zinc-800"
+                        : "border-zinc-300 hover:scale-105"
                     }`}
                     style={{ background: hex }}
                     title={n}
@@ -353,21 +460,24 @@ export default function ProductCard({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-4">
-              <h3 className="text-lg font-semibold text-zinc-900">Orden de compra:</h3>
+              <h3 className="text-lg font-semibold text-zinc-900">
+                Orden de compra:
+              </h3>
               <p className="text-sm text-zinc-600">
-                Estás a punto de hacer una orden con las siguientes características:
-                Modelo:
-                <span className="text-black font-bold"> {modelVal} </span>
-                de tipo de suela:
+                Estás a punto de hacer una orden con las siguientes
+                características: Modelo:{" "}
+                <span className="text-black font-bold"> {displayName} </span>
+                de tipo de suela:{" "}
                 <span className="text-black font-bold">
-                  {" "}
-                  {TYPE_OPTIONS.find((t) => t.value === tipo)?.label}
-                </span>
-                {" "}
-                 y color:
-                <span className="text-black font-bold"> {colorName} </span>
-                del material:
-                <span className="text-black font-bold"> {material} </span>.¿Estás
+                  {
+                    TYPE_OPTIONS.find((o) => o.value === normalizeTipo(tipo))
+                      ?.label
+                  }
+                </span>{" "}
+                y color:{" "}
+                <span className="text-black font-bold">{colorName}</span> del
+                material:{" "}
+                <span className="text-black font-bold">{material}</span>. ¿Estás
                 seguro?
               </p>
             </div>
@@ -387,7 +497,7 @@ export default function ProductCard({
                     id,
                     name: modelVal,
                     src,
-                    tipo,
+                    tipo: normalizeTipo(tipo),
                     color: colorName,
                     material,
                     price,
