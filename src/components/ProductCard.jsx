@@ -22,7 +22,7 @@ const SANDALIAS_BLOCKED = [];
 
 /* Modelos no disponibles (se muestran en B/N) */
 const UNAVAILABLE = [33];
-const NEW =[2];
+const NEW =[2,23,30];
 
 /* ===================== Helpers ===================== */
 function getModelNumber(name, id) {
