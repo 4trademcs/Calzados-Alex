@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
       title: "1. Información que Recopilamos",
       content: [
         "Información de contacto: nombre, número de teléfono, dirección de entrega",
-        "Medidas personalizadas: número de pie, ancho del pie, altura de empeine",
+        "Medidas personalizadas: número de pie, ancho del pie, altura de empeine (tomadas en el taller)",
         "Preferencias de diseño: modelos seleccionados, combinaciones personalizadas, altura de tacón",
         "Información de comunicación: conversaciones a través de WhatsApp para coordinar pedidos",
         "Datos de entrega: dirección completa para entregas a domicilio por costo adicional",
@@ -21,7 +21,6 @@ export default function PrivacyPolicy() {
         "Coordinación de citas para toma de medidas y pruebas",
         "Comunicación sobre el progreso de su pedido",
         "Organización de entregas a domicilio",
-        "Seguimiento post-venta y garantía de satisfacción",
         "Mejora de nuestros servicios de personalización",
       ],
     },
@@ -42,8 +41,6 @@ export default function PrivacyPolicy() {
       content: [
         "Derecho a acceder a toda la información que tenemos sobre usted",
         "Derecho a solicitar corrección de datos incorrectos o desactualizados",
-        "Derecho a solicitar la eliminación de sus datos personales",
-        "Derecho a retirar el consentimiento para el uso de sus datos en cualquier momento",
         "Derecho a recibir una copia de sus medidas y especificaciones de diseño",
       ],
     },
@@ -53,7 +50,6 @@ export default function PrivacyPolicy() {
       content: [
         "Utilizamos WhatsApp como canal principal de comunicación",
         "Solo le contactaremos para asuntos relacionados con sus pedidos",
-        "Puede solicitar no recibir comunicaciones promocionales en cualquier momento",
         "Respetamos su privacidad y no enviamos mensajes no solicitados",
         "Todas las comunicaciones son profesionales y relacionadas con nuestros servicios",
       ],
@@ -66,7 +62,6 @@ export default function PrivacyPolicy() {
         "No compartimos su dirección con servicios de mensajería sin su conocimiento",
         "Puede solicitar entrega en dirección alternativa en cualquier momento",
         "Guardamos su dirección solo si autoriza entregas futuras",
-        "Puede solicitar la eliminación de su dirección de nuestros registros",
       ],
     },
   ];
@@ -78,7 +73,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto text-center">
           <Shield className="w-12 h-12 mx-auto mb-4 text-[#D4A574]" />
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Política de Privacidad</h1>
-          <p className="text-[#D4A574] text-lg">Alex Suarez - Zapatería Artesanal</p>
+          <p className="text-[#D4A574] text-lg">Alex Suárez - Zapatería Artesanal</p>
           <p className="text-gray-300 mt-2">Última actualización: Enero 2025</p>
         </div>
       </header>
@@ -88,7 +83,7 @@ export default function PrivacyPolicy() {
         {/* Introducción */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-[#D4A574]/20">
           <p className="text-gray-700 leading-relaxed text-lg">
-            En <span className="font-semibold text-[#2C1810]">Alex Suarez Zapatería Artesanal</span>, valoramos
+            En <span className="font-semibold text-[#2C1810]">Alex Suárez Zapatería Artesanal</span>, valoramos
             profundamente su privacidad y la confianza que deposita en nosotros al compartir sus datos personales y
             medidas para la confección de su calzado personalizado. Esta política explica cómo recopilamos, usamos y
             protegemos su información.
@@ -131,7 +126,7 @@ export default function PrivacyPolicy() {
             personales, puede contactarnos a través de:
           </p>
           <div className="space-y-2 text-[#D4A574]">
-            <p className="font-semibold">WhatsApp: +(53) 59419319</p>
+            <p className="font-semibold">WhatsApp: +(53) 59387402</p>
             <p className="font-semibold">
               Dirección: Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba
             </p>

@@ -3,7 +3,7 @@
 const BussinesDetail = {
   // Datos de contacto
   contact: {
-    whatsappNumbers: [ { number: "59419319", number2: "59419319" }],
+    whatsappNumbers: [ { number: "59387402", number2: "59387402" }],
     address:"Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba",
     whatsappMessage: "Hola! Quiero diseñar mi calzado personalizado.",
     wspInfo: "Quiero información sobre cómo personalizar mi calzado",
@@ -29,10 +29,10 @@ const BussinesDetail = {
     modelos: [
       {
         name: "Tacones",
-        price: "Desde $3000 a $3500",
+        price: "Desde $3000 a $4000",
         description: "Diseño tradicional con materiales premium",
         features: [
-          "Selección de colores",
+          "Selección de colores y material",
           "Medidas personalizadas",
           "3 opciones de tacón",
           "Entrega a domicilio",
@@ -41,7 +41,7 @@ const BussinesDetail = {
       },
       {
         name: "Sandalias",
-        price: "Desde $2000 a $2500",
+        price: "Desde $2000 a $3000",
         description: "Combina estilos y crea tu diseño único",
         features: [
           "Combina partes de diferentes modelos",
@@ -55,13 +55,14 @@ const BussinesDetail = {
     remontes: [
       {
         name: "Remonte Básico",
-        price: "Desde $3000 a $3500",
+        price: "Desde $3000 a $5000",
         description: "Renovación de parte superior",
         features: [
           "Sin cambio de suela",
           "Renovación de parte superior",
           "Limpieza profunda",
           "Revisión general",
+          "Revestimiento de plataformas"
         ],
         popular: true,
       },
@@ -71,10 +72,7 @@ const BussinesDetail = {
         description: "Restauración integral de tu calzado",
         features: [
           "Cambio de suela",
-          "Renovación de tacón",
-          "Reparación de costuras",
-          "Pegado",
-          "Pulido y acabado",
+          "Cambio de plantilla",
         ],
         popular: false,
       },

@@ -6,8 +6,8 @@ const TermsConditions = () => {
       icon: FileCheck,
       title: "1. Aceptación de Términos",
       content: [
-        "Al realizar un pedido con Alex Suarez Zapatería Artesanal, usted acepta estos términos y condiciones",
-        "Estos términos aplican a todos los servicios: calzado nuevo, personalización, remontes y reparaciones",
+        "Al realizar un pedido con Alex Suárez Zapatería Artesanal, usted acepta estos términos y condiciones",
+        "Estos términos aplican a todos los servicios: calzado nuevo, personalización y remontes",
         "Nos reservamos el derecho de modificar estos términos con previo aviso",
         "Es responsabilidad del cliente leer y comprender estos términos antes de realizar un pedido",
       ],
@@ -18,7 +18,7 @@ const TermsConditions = () => {
       content: [
         "Cada calzado es confeccionado artesanalmente según las especificaciones del cliente",
         "El cliente puede combinar partes delanteras y traseras de diferentes modelos",
-        "Ofrecemos tres alturas de tacón: bajo (3-5cm), medio (5-8cm) y alto (8-12cm)",
+        "Ofrecemos tres alturas de tacón",
         "Las medidas se toman personalmente en nuestro taller para garantizar el ajuste perfecto",
         "Una vez confirmado el diseño y medidas, no se aceptan cambios en el pedido",
         "El cliente debe aprobar el diseño final antes de iniciar la confección",
@@ -28,8 +28,8 @@ const TermsConditions = () => {
       icon: Clock,
       title: "3. Tiempos de Entrega",
       content: [
-        "Calzado nuevo personalizado: 15-20 días hábiles desde la confirmación del pedido",
-        "Remontes y reparaciones: 7-10 días hábiles según complejidad",
+        "Calzado nuevo personalizado: 15-30 días hábiles desde la confirmación del pedido",
+        "Remontes y reparaciones: 15-30 días hábiles según complejidad",
         "Los tiempos pueden variar según la complejidad del diseño y disponibilidad de materiales",
         "Notificaremos cualquier retraso con anticipación",
         "Los pedidos urgentes pueden tener costo adicional (consultar disponibilidad)",
@@ -39,10 +39,9 @@ const TermsConditions = () => {
       icon: Package,
       title: "4. Pagos y Precios",
       content: [
-        "Se requiere un anticipo del 50% al confirmar el pedido",
-        "El saldo restante se paga al momento de la entrega",
+        "Se paga al momento de la entrega",
         "Los precios incluyen: diseño, materiales, confección y una prueba de ajuste",
-        "Las entregas a domicilio tienen un costo adicional según la distancia",
+        "Las entregas a domicilio tienen un costo adicional",
         "Aceptamos pagos en efectivo, nada de transferencia bancaria o pago móvil",
         "Los precios están sujetos a cambios según disponibilidad de materiales",
       ],
@@ -66,7 +65,7 @@ const TermsConditions = () => {
         "Debido a la naturaleza personalizada, no aceptamos devoluciones por cambio de opinión",
         "Si el calzado no ajusta correctamente, realizamos modificaciones sin costo",
         "En caso de defecto de fabricación, reparamos o reemplazamos el producto",
-        "El cliente debe reportar cualquier problema dentro de las primeras 48 horas",
+        "El cliente debe reportar cualquier problema al momento de recibir su producto",
         "No se aceptan devoluciones después de usar el calzado en exteriores",
         "Los ajustes de confort están incluidos en el precio original",
       ],
@@ -91,7 +90,6 @@ const TermsConditions = () => {
         "Asistir a las citas programadas para toma de medidas y pruebas",
         "Comunicar cualquier condición especial del pie (juanetes, dedos sensibles, etc.)",
         "Aprobar el diseño final antes de iniciar la confección",
-        "Realizar los pagos en las fechas acordadas",
         "Mantener comunicación activa durante el proceso de confección",
         "Probar el calzado inmediatamente al recibirlo y reportar cualquier problema",
       ],
@@ -107,7 +105,7 @@ const TermsConditions = () => {
             <FileCheck className="w-12 h-12 text-[#D4A574]" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Términos y Condiciones</h1>
-          <p className="text-center text-[#D4A574] text-lg">Alex Suarez - Zapatería Artesanal</p>
+          <p className="text-center text-[#D4A574] text-lg">Alex Suárez - Zapatería Artesanal</p>
           <p className="text-center text-gray-300 mt-2">Última actualización: Enero 2025</p>
         </div>
       </div>
@@ -116,7 +114,7 @@ const TermsConditions = () => {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-[#D4A574]/20">
           <p className="text-gray-700 leading-relaxed text-lg">
-            Bienvenido a <span className="font-semibold text-[#2C1810]">Alex Suarez Zapatería Artesanal</span>. Estos
+            Bienvenido a <span className="font-semibold text-[#2C1810]">Alex Suárez Zapatería Artesanal</span>. Estos
             términos y condiciones establecen las reglas y regulaciones para el uso de nuestros servicios de confección
             artesanal de calzado personalizado para mujer. Al realizar un pedido, usted acepta cumplir con estos
             términos.
@@ -185,7 +183,7 @@ const TermsConditions = () => {
             Si tiene alguna pregunta sobre estos términos y condiciones, no dude en contactarnos:
           </p>
           <div className="space-y-2 text-[#D4A574]">
-            <p className="font-semibold">WhatsApp: +(53) 59419319</p>
+            <p className="font-semibold">WhatsApp: +(53) 59387402</p>
             <p className="font-semibold">Dirección:Avenida 27, Edificio 340 Apto3 - Entre Calle 76 y 78, San José de las Lajas, Mayabeque, Cuba</p>
             <p className="font-semibold">Horario: en nuetra página principal</p>
           </div>
@@ -194,7 +192,7 @@ const TermsConditions = () => {
         {/* Footer Note */}
         <div className="mt-8 p-6 bg-[#D4A574]/10 rounded-xl border border-[#D4A574]/30">
           <p className="text-sm text-gray-600 text-center leading-relaxed">
-            Al realizar un pedido con Alex Suarez Zapatería Artesanal, usted confirma que ha leído, entendido y aceptado
+            Al realizar un pedido con Alex Suárez Zapatería Artesanal, usted confirma que ha leído, entendido y aceptado
             estos términos y condiciones en su totalidad.
           </p>
         </div>

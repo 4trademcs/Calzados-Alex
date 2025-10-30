@@ -56,7 +56,7 @@ const ThreeDShowcase = () => {
         >
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B6F47] to-[#A0826D] text-white px-6 py-2 rounded-full mb-6 shadow-lg">
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium tracking-wide">EXCLUSIVO EN CALZADOS ALEX SUAREZ</span>
+            <span className="text-sm font-medium tracking-wide">EXCLUSIVO EN CALZADOS ALEX SUÁREZ</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-[#2C2416] mb-6 leading-tight">
