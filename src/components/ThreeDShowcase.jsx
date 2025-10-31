@@ -54,7 +54,10 @@ const ThreeDShowcase = () => {
         <div
           className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B6F47] to-[#A0826D] text-white px-6 py-2 rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B6F47] to-[#A0826D] text-white px-6 py-2 rounded-full mb-6 shadow-lg"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fillOpacity='1' fillRule='evenodd'/%3E%3C/svg%3E")`,
+          }}>
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-medium tracking-wide">EXCLUSIVO EN CALZADOS ALEX SUÁREZ</span>
           </div>
@@ -78,7 +81,7 @@ const ThreeDShowcase = () => {
                 }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-[#8B6F47] to-[#A0826D] rounded-xl flex items-center justify-center mb-4 shadow-md">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 shadow-md">
                 <feature.icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-xl font-bold text-[#2C2416] mb-2">{feature.title}</h3>
@@ -93,7 +96,7 @@ const ThreeDShowcase = () => {
           <div
             className={`relative group transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="/3d.webp"
                 alt="Visualización 3D de sandalia con selector de colores"
@@ -119,7 +122,7 @@ const ThreeDShowcase = () => {
           <div
             className={`relative group transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="/3d2.webp"
                 alt="Selector de materiales y tipos de suela en 3D"
@@ -143,9 +146,9 @@ const ThreeDShowcase = () => {
         </div>
 
         {/* Innovation Statement */}
-        <div className={`bg-[#8B6F47] rounded-2xl text-center shadow-2xl transition-all duration-1000 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} >
+        <div className={`bg-[#8B6F47] rounded-2xl text-center shadow-2xl transition-all duration-1000 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
           <div className="grid md:grid-cols-2 gap-8 items-center mx-auto">
-            <img src="/3d3.webp" alt="tutorial visual" className=" pt-8 relative drop-shadow-2xl m-auto" />
+            <img src="/3d3.webp" alt="tutorial visual" className="p-2 pt-8 relative drop-shadow-2xl m-auto" />
             <div className="p-8 sm:p-12">
               <div className="inline-flex mx-auto items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-6">
                 <Sparkles className="w-8 h-8 text-white" />
