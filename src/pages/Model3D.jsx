@@ -1,6 +1,7 @@
 // src/pages/Model3D.jsx
 import { useState, useMemo, useEffect } from "react";
 import { BsWhatsapp, BsArrow90DegLeft, BsSearch, BsQuestion, BsList } from "react-icons/bs";
+import { FiX } from "react-icons/fi";
 import { Link, useSearchParams } from "react-router-dom";
 import BussinesDetail from "../components/BussinesDetail";
 import ModelLoader from "../components/ModelLoader";
@@ -45,11 +46,18 @@ export default function Model3D() {
 
   // Mensaje WhatsApp
   const whatsappMessage = useMemo(() => {
-    const msg =
-      tipo && selectedModel && color && material
-        ? `Hola quiero hacer mi pedido del modelo: ${selectedModel} de tipo: ${tipo} y color: ${color} del material: ${material}.`
-        : BussinesDetail?.contact?.wspDefault || "Hola!";
+    const msg = tipo && selectedModel && color && material
+      ? `Hola quiero hacer mi pedido del modelo: ${selectedModel} de tipo: ${tipo} y color: ${color} del material: ${material}.`
+      : BussinesDetail?.contact?.wspDefault || "Hola!";
     return encodeURIComponent(msg);
+  }, [tipo, selectedModel, color, material]);
+
+  // Mensaje del modal
+  const Message = useMemo(() => {
+    const msg = tipo && selectedModel && color && material
+      ? `Usted ha seleccionado modelo: ${selectedModel} de tipo: ${tipo} y color: ${color} del material: ${material}.`
+      : "Upss, algo ha ido mal!";
+    return msg;
   }, [tipo, selectedModel, color, material]);
 
   // Buscar al pulsar botón o Enter (inmediato, ignora debounce)
@@ -57,19 +65,23 @@ export default function Model3D() {
     const next = inputValue.trim();
     if (next) setModelName(next);
   };
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSearch();
-  };
+  const handleKeyDown = (e) => { if (e.key === "Enter") handleSearch(); };
 
-  // ======= Menú lateral con la foto original del modelo =======
+  // ======= Imagen del modelo (para el modal) =======
   const { list: images } = useList({ type: "images" });
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const matchedImage = useMemo(() => {
     if (!images?.length) return null;
     const target = (selectedModel || "").toLowerCase().trim();
     return images.find(({ name }) => String(name).toLowerCase().trim() === target) || null;
   }, [images, selectedModel]);
+
+  // Estado del modal (imagen seleccionada)
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Cuando cambia el modelo seleccionado, si el modal estaba abierto pero ya no hay imagen, lo cerramos
+  useEffect(() => {
+    if (selectedImage && !matchedImage) setSelectedImage(null);
+  }, [matchedImage, selectedImage]);
 
   return (
     <section className="relative flex min-h-dvh items-center justify-center flex-col">
@@ -83,9 +95,15 @@ export default function Model3D() {
         <BsArrow90DegLeft />
       </Link>
 
-      {/* Botón lateral de imagen */}
+      {/* Botón para abrir modal con imagen */}
       <button
-        onClick={() => setMenuOpen(true)}
+        onClick={() => {
+          if (matchedImage) {
+            setSelectedImage({ url: matchedImage.url, category: selectedModel, message: Message });
+          } else {
+            setSelectedImage({ url: "/placeholder.svg", category: selectedModel, message: "No se encontró una imagen para este modelo." });
+          }
+        }}
         className="fixed top-4 right-2 z-20 rounded-full p-1 text-sm bg-white/10 text-white border-2 border-amber-50 shadow backdrop-blur-md hover:bg-white hover:text-black transition"
         aria-label="Ver imagen original"
         title="Ver imagen original"
@@ -93,68 +111,39 @@ export default function Model3D() {
         <BsList size={25} />
       </button>
 
-      {/* Backdrop del panel */}
-      <div
-        onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-30 bg-black/40 backdrop-blur-sm transition-opacity ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      />
-
-      {/* Panel lateral */}
-      <aside
-        className={`
-          fixed top-0 right-0 outline-4 outline-white z-30 h-full w-80 sm:w-96 bg-blue-500/20 backdrop-blur-lg shadow-2xl
-          transform transition-transform duration-500
-          ${menuOpen ? "translate-x-0" : "translate-x-[105%]"}
-          flex flex-col
-        `}
-        aria-label="Menú de imagen del modelo"
-      >
-        <div className="flex items-center justify-between p-4 border-b-2 border-b-amber-50">
-          <h3 className="text-base font-semibold text-white">Imagen original</h3>
+      {/* Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fadeIn"
+          onClick={() => setSelectedImage(null)}
+          aria-modal="true"
+          role="dialog"
+        >
           <button
-            onClick={() => setMenuOpen(false)}
-            className="rounded-full px-3 py-1 bg-zinc-900 text-white text-sm hover:bg-zinc-800 transition"
+            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+            onClick={() => setSelectedImage(null)}
             aria-label="Cerrar"
             title="Cerrar"
           >
-            ✕
+            <FiX className="w-6 h-6 text-white" />
           </button>
-        </div>
 
-        <div className="p-4 flex-1 overflow-auto">
-          <div className="mb-3">
-            <p className="text-sm text-white">
-              Modelo: <span className="font-medium">{selectedModel}</span>
-            </p>
-          </div>
-
-          <div className="rounded-xl overflow-hidden border border-amber-50 bg-blue-300/10">
-            {matchedImage ? (
-              <img
-                src={matchedImage.url}
-                alt={`Foto original de ${selectedModel}`}
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div className="p-6 text-sm text-zinc-600">
-                No se encontró una imagen para <strong>{selectedModel}</strong>.
-              </div>
-            )}
+          <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selectedImage.url || "/placeholder.svg"}
+              alt={selectedImage.category}
+              className="w-full max-w-2xs m-auto h-auto rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+            <div className="mt-6 text-center">
+              <p className="text-white font-serif text-2xl mb-2">{selectedImage.category}</p>
+              <p className="text-white/70">Diseño personalizable disponible</p>
+              {/* Mensaje adicional bajo la imagen (derivado del estado de la página) */}
+              <p className="text-white/70 mt-2">{selectedImage.message}</p>
+            </div>
           </div>
         </div>
-
-        <div className="p-4 border-t-2 border-t-amber-50">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="w-full rounded-full bg-zinc-900 text-white py-2 text-sm hover:bg-zinc-800 transition"
-          >
-            Cerrar
-          </button>
-        </div>
-      </aside>
+      )}
 
       {/* Nota (toggle) */}
       {notaVisible ? (

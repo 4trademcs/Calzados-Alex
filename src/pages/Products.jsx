@@ -1,25 +1,35 @@
 // src/pages/Products.jsx
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { BsArrow90DegLeft,BsSearch } from "react-icons/bs";
+import { BsArrow90DegLeft, BsSearch } from "react-icons/bs";
 import ProductCard from "../components/ProductCard";
 import { useList } from "../hooks/useList";
+import BussinesDetail from "../components/BussinesDetail";
+
+function getModelNumber(name, idx) {
+  const m = String(name ?? "").match(/\d+/);
+  if (m) return Number(m[0]);
+  const n = Number(idx);
+  return Number.isFinite(n) ? n : null;
+}
 
 export default function Products() {
   // Fuente de verdad: [{ name (sin extensión), url }]
-  const { list } = useList({ type: "images" }); // por defecto ya es "images"; explícito por claridad
+  const { list } = useList({ type: "images" });
 
   // UI state
   const [inputValue, setInputValue] = useState("");
   const [activeFilters, setActiveFilters] = useState([]);
-  const [keywords, setKeywords] = useState([]); // se actualiza SOLO al pulsar "Buscar"
+  const [keywords, setKeywords] = useState([]); // solo para búsqueda por texto
 
   // Filtros fijos
   const fixedFilters = ["nuevos", "en venta"];
 
   const toggleFilter = (filter) => {
     setActiveFilters((prev) =>
-      prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
+      prev.includes(filter)
+        ? prev.filter((f) => f !== filter)
+        : [...prev, filter]
     );
   };
 
@@ -28,22 +38,42 @@ export default function Products() {
       .split(",")
       .map((k) => k.trim().toLowerCase())
       .filter(Boolean);
-
-    setKeywords([...typed, ...activeFilters]);
+    setKeywords(typed);
   };
 
-  // Filtrado derivado por keywords contra item.name (sin extensión)
+  // === Reglas globales ===
+  const { NEW, UNAVAILABLE } = BussinesDetail.rules;
+
+  // 1) Aplico filtros “nuevos” / “en venta” con las listas globales
+  const filteredByFlags = useMemo(() => {
+    return list.filter((item, index) => {
+      const num = getModelNumber(item?.name, index + 1);
+
+      // Si está activo "nuevos", solo mostrar los pertenecientes a NEW
+      if (activeFilters.includes("nuevos")) {
+        if (!(num != null && NEW.includes(num))) return false;
+      }
+
+      // Si está activo "en venta", excluir los UNAVAILABLE
+      if (activeFilters.includes("en venta")) {
+        if (num != null && UNAVAILABLE.includes(num)) return false;
+      }
+
+      return true;
+    });
+  }, [list, activeFilters, NEW, UNAVAILABLE]);
+
+  // 2) Aplico búsqueda textual por nombre (keywords)
   const displayed = useMemo(() => {
-    if (!keywords.length) return list;
+    if (!keywords.length) return filteredByFlags;
     const needles = keywords.map((k) => k.toLowerCase());
-    return list.filter((item) => {
+    return filteredByFlags.filter((item) => {
       const name = (item?.name ?? "").toLowerCase();
       return needles.every((k) => name.includes(k));
     });
-  }, [list, keywords]);
+  }, [filteredByFlags, keywords]);
 
   const handleShoeClick = ({ id, name, src, tipo, price }) => {
-    // Acción del botón "zapato" (modal, 3D, etc.)
     console.debug("Shoe action:", { id, name, src, tipo, price });
   };
 
@@ -73,7 +103,7 @@ export default function Products() {
             onClick={handleSearch}
             className="rounded-full bg-blue-600 px-2.5 py-1 text-white text-sm hover:bg-blue-700 transition"
           >
-           <BsSearch size={20}/>
+            <BsSearch size={20} />
           </button>
         </div>
 
@@ -107,8 +137,8 @@ export default function Products() {
           <ProductCard
             key={item.name ?? index}
             id={index + 1}
-            name={item.name}   
-            url={item.url}     
+            name={item.name}
+            url={item.url}
             onShoeClick={handleShoeClick}
           />
         ))}
