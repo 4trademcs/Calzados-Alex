@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <div className="relative">
-      {/* <ScrollIndicator /> */}
+      <ScrollIndicator />
       <Navbar />
       <Hero />
       <Features />

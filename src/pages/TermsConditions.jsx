@@ -1,4 +1,5 @@
 import { FileCheck, Package, RefreshCw, Ruler, Clock, AlertCircle, CheckCircle, Truck } from "lucide-react"
+import ScrollIndicator from "../components/ScrollIndicator"
 
 const TermsConditions = () => {
   const sections = [
@@ -98,6 +99,7 @@ const TermsConditions = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F5F1E8] to-white">
+      <ScrollIndicator />
       {/* Header */}
       <div className="bg-[#2C1810] text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">

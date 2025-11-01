@@ -1,4 +1,5 @@
 import { Shield, Lock, Eye, FileText, Phone, MapPin } from "lucide-react";
+import ScrollIndicator from "../components/ScrollIndicator";
 
 export default function PrivacyPolicy() {
   const sections = [
@@ -68,6 +69,7 @@ export default function PrivacyPolicy() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#F5F1E8] to-white flex flex-col">
+      <ScrollIndicator />
       {/* Header */}
       <header className="bg-[#2C1810] text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">

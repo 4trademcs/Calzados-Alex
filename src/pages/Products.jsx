@@ -5,6 +5,7 @@ import { BsArrow90DegLeft, BsSearch } from "react-icons/bs";
 import ProductCard from "../components/ProductCard";
 import { useList } from "../hooks/useList";
 import BussinesDetail from "../components/BussinesDetail";
+import ScrollIndicator from "../components/ScrollIndicator";
 
 function getModelNumber(name, idx) {
   const m = String(name ?? "").match(/\d+/);
@@ -79,6 +80,7 @@ export default function Products() {
 
   return (
     <main className="mx-auto flex min-h-dvh flex-col items-center justify-start px-4 py-20 pt-52 gap-8">
+      <ScrollIndicator />
       {/* ← Ir atrás */}
       <Link
         to="/"
