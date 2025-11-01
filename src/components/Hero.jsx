@@ -33,10 +33,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div
-            className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-          >
+          <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10" }`} >
             <div className="inline-flex items-center space-x-2 bg-[var(--color-accent)]/20 px-4 py-2 rounded-full mb-6">
               <span className="w-2 h-2 bg-[var(--color-secondary)] rounded-full animate-pulse"></span>
               <span className="text-sm text-[var(--color-secondary)] font-medium">
@@ -107,22 +104,24 @@ export default function Hero() {
 
           {/* Right Content - Image Showcase */}
           <div
-            className={`relative transition-all duration-1000 delay-300 ${isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
-              }`}
+            className={`relative transition-all duration-1000 delay-300 ${isVisible? "opacity-100 translate-x-0": "opacity-0 translate-x-10" }`}
           >
             <div className="relative">
               {/* Main Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/women-s-low-heel-elegant-sandals-black.webp"
+                  src="/elegant-face.webp"
                   alt="Zapatos artesanales Calzados Suárez"
                   className="w-full h-[600px] object-cover"
                 />
+                 <img src="/logo.webp" alt="logo" className="absolute top-2 -right-8"
+                 style={{
+                  filter: 'drop-shadow(8px 11px 3px black) drop-shadow(-8px -5px 3px black)'
+                }}/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
 
+             
               {/* Floating Cards */}
               <div className="absolute bottom-1 -right-3 bg-[var(--color-surface)] p-6 rounded-2xl shadow-xl max-w-xs animate-float">
                 <div className="flex items-center space-x-4">

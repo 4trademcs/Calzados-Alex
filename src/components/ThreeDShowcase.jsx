@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Eye, Palette, Layers, MousePointer2, Sparkles, ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom";
+import InfiniteSlider from "./InfiniteSlider";
 
 const ThreeDShowcase = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -87,58 +88,7 @@ const ThreeDShowcase = () => {
           ))}
         </div>
 
-        {/* Demo Images Section */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Image 1 - 3D Rotation Demo */}
-          <div className={`relative group transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <img
-                src="/3d.webp"
-                alt="Visualización 3D de sandalia con selector de colores"
-                className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105 group-focus-within:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Floating indicator */}
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
-                <MousePointer2 className="w-4 h-4 text-[#8B6F47] animate-pulse" />
-                <span className="text-sm font-medium text-[#2C2416]">Rota 360°</span>
-              </div>
-
-              {/* Bottom label */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#2C2416] to-transparent p-6">
-                <p className="text-white font-semibold text-lg">Rotación Interactiva</p>
-                <p className="text-white/80 text-sm">Examina cada detalle desde cualquier ángulo</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Image 2 - Material & Sole Selection */}
-          <div
-            className={`relative group transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
-          >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <img
-                src="/3d2.webp"
-                alt="Selector de materiales y tipos de suela en 3D"
-                className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105 focus-within:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Floating indicator */}
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
-                <Layers className="w-4 h-4 text-[#8B6F47] animate-pulse" />
-                <span className="text-sm font-medium text-[#2C2416]">Personalizar</span>
-              </div>
-
-              {/* Bottom label */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#2C2416] to-transparent p-6">
-                <p className="text-white font-semibold text-lg">Materiales y Suelas</p>
-                <p className="text-white/80 text-sm">Visualiza en tiempo real</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InfiniteSlider/>
 
         {/* Innovation Statement */}
         <div className={`bg-[#8B6F47] rounded-2xl text-center shadow-2xl transition-all duration-1000 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
