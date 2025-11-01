@@ -20,10 +20,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@gltf-transform/core": "^4.2.1",
+    "@gltf-transform/extensions": "^4.2.1",
+    "@gltf-transform/functions": "^4.2.1",
     "@vitejs/plugin-react": "^4.4.1",
+    "draco3dgltf": "^1.5.7",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "sharp": "^0.34.4",
     "vite": "^6.3.5"
   }
 }
