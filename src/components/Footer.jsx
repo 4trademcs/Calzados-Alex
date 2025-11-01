@@ -1,6 +1,7 @@
 import { BsWhatsapp, BsInstagram, BsFacebook } from "react-icons/bs";
 import BussinesDetail from "./BussinesDetail"; // ← importa la data del negocio
 import { Link } from "react-router-dom";
+import { MessageCircleMore } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,7 +36,7 @@ export default function Footer() {
       href: `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
       label: "WhatsApp",
     },
-    { icon: BsInstagram, href: "#", label: "Instagram" },
+    { icon: MessageCircleMore, href: "https://chat.whatsapp.com/Go8NUEbPg91GLkXYS9ZQIy?mode=wwt", label: "Instagram" },
     { icon: BsFacebook, href: "#", label: "Facebook" },
   ];
 

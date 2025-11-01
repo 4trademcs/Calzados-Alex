@@ -216,7 +216,6 @@ export default function ProductCard({
 
   return (
     <>
-      <Tooltip content={`Material actual: ${material}`} position="top">
         <article
           tabIndex={0}
           className={`group relative w-[300px] rounded-[30px] bg-[var(--color-item)] transition ${
@@ -254,7 +253,7 @@ export default function ProductCard({
 
             {/* Tipo + Material */}
             <div
-              className="mb-4 flex flex-row justify-between"
+              className="mb-4 flex flex-row justify-between opacity-0 transition duration-300 scale-25 group-focus-within:opacity-100 group-focus-within:scale-100 group-hover:opacity-100 group-hover:scale-100"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Tipo */}
@@ -328,7 +327,7 @@ export default function ProductCard({
                       h-[200px] transition drop-shadow-[10px_7px_3px_#2b2b2bb8]
                       group-hover:drop-shadow-[10px_7px_3px_#2b2b2b]
                       group-focus-within:drop-shadow-[10px_7px_3px_#2b2b2b]
-                      [transform:scale(1)_rotate(20deg)]
+                      [transform:scale(1)_rotate(20deg)] duration-400
                       group-hover:[transform:scale(1.2)_rotate(30deg)_translate(10px,-20px)]
                       group-focus-within:[transform:scale(1.2)_rotate(30deg)_translate(10px,-20px)]
                     "
@@ -405,7 +404,6 @@ export default function ProductCard({
             </div>
           </div>
         </article>
-      </Tooltip>
 
       {/* Modal de colores */}
       {showColorModal && (
