@@ -253,11 +253,11 @@ export default function ProductCard({
 
             {/* Tipo + Material */}
             <div
-              className="mb-4 flex flex-row justify-between opacity-0 transition duration-300 scale-25 group-focus-within:opacity-100 group-focus-within:scale-100 group-hover:opacity-100 group-hover:scale-100"
+              className="relative mb-4 flex flex-row justify-between z-50 opacity-0 transition duration-400 scale-25 group-focus-within:opacity-100 group-focus-within:scale-100 group-hover:opacity-100 group-hover:scale-100"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Tipo */}
-              <div className="flex flex-col items-start gap-2 z-10">
+              <div className="flex flex-col items-start gap-2">
                 <label
                   htmlFor={`tipo-${id}`}
                   className="text-sm font-bold text-zinc-700"
@@ -269,7 +269,7 @@ export default function ProductCard({
                   value={normalizeTipo(tipo)}
                   onChange={(e) => setTipo(e.target.value)}
                   aria-label="Seleccionar tipo de calzado"
-                  className="rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
+                  className="rounded-md border-[1.5px] border-[var(--color-item)]  bg-white/50 backdrop-blur-[2px] font-bold px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
                 >
                   {TYPE_OPTIONS.map((opt) => (
                     <option
@@ -284,7 +284,7 @@ export default function ProductCard({
               </div>
 
               {/* Material */}
-              <div className="flex flex-col items-end gap-2 z-10">
+              <div className="flex flex-col items-end gap-2">
                 <label
                   htmlFor={`material-${id}`}
                   className="text-sm font-semibold text-zinc-700"
@@ -301,7 +301,7 @@ export default function ProductCard({
                     if (first) setColorName(first);
                   }}
                   aria-label="Seleccionar material del calzado"
-                  className="rounded-md border-[1.5px] border-[var(--color-item)] bg-white px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
+                  className="rounded-md border-[1.5px] border-[var(--color-item)] bg-white/50 backdrop-blur-[2px] font-bold px-3 py-2 text-sm  outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-zinc-800 shadow-sm"
                 >
                   {materials.map((m) => (
                     <option
