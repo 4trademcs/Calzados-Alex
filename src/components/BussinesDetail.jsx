@@ -94,7 +94,7 @@ const BussinesDetail = {
 
     // Estados de catálogo:
     UNAVAILABLE: [33],
-    NEW: [2, 23, 30, 24, 25],
+    NEW: [13,16,20,23,24,25,30,34,49],
   },
 };
 
