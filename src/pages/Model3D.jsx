@@ -55,7 +55,7 @@ export default function Model3D() {
   // Mensaje del modal
   const Message = useMemo(() => {
     const msg = tipo && selectedModel && color && material
-      ? `Usted ha seleccionado modelo: ${selectedModel} de tipo: ${tipo} y color: ${color} del material: ${material}.`
+      ? `Este es el modelo : ${selectedModel} con suela tipo: ${tipo} y le llega de color: ${color} con material: ${material}.`
       : "Upss, algo ha ido mal!";
     return msg;
   }, [tipo, selectedModel, color, material]);
@@ -137,7 +137,7 @@ export default function Model3D() {
             />
             <div className="mt-6 text-center">
               <p className="text-white font-serif text-2xl mb-2">{selectedImage.category}</p>
-              <p className="text-white/70">Diseño personalizable disponible</p>
+              <p className="text-white/70">Datos del calzado:</p>
               {/* Mensaje adicional bajo la imagen (derivado del estado de la página) */}
               <p className="text-white/70 mt-2">{selectedImage.message}</p>
             </div>
